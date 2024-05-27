@@ -88,4 +88,4 @@ group :production do
 end
 
 gem 'pry-rails'
-gem 'devise' #要インストール
+gem 'devise'
