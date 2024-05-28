@@ -7,8 +7,13 @@ class TasksController < ApplicationController
   end
 
   def create
+    #将来的には配列でもらったtasksを繰り返し処理することで複数のタスクを保存できるようにしたい
     @task = Task.new(task_params)
-    @task.save
+    if @task.save
+      redirect_to new_task_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
