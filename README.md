@@ -32,7 +32,7 @@ belongs_to :user
 
 has_one :finish
 has_one :priority
-belongs_to :user
+belongs_to :group
 
 ### finishesテーブル（Finishモデル）
 
