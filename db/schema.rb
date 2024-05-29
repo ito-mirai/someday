@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_28_031539) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_29_062224) do
+  create_table "finishes", charset: "utf8", force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_finishes_on_task_id"
+  end
+
   create_table "groups", charset: "utf8", force: :cascade do |t|
     t.string "group_name", null: false
     t.text "group_memo"
@@ -45,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_28_031539) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "finishes", "tasks"
   add_foreign_key "groups", "users"
   add_foreign_key "tasks", "groups"
   add_foreign_key "tasks", "users"
