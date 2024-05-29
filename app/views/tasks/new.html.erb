@@ -1,5 +1,5 @@
-<main>
 <%= render partial: "shared/header" %>
+<main>
 <div>tasks new画面</div>
 <%= form_with model: @task, url:tasks_path do |form| %>
   <div><%= form.collection_select(:group_id, Group.where(user_id: current_user.id), :id, :group_name, {}, {}) %></div>
