@@ -29,8 +29,8 @@ belongs_to :user
 | content | string | null: false | タスク |
 | memo | text |  | タスクの補足 |
 | type_id | integer | null: false | タスクのタイプ（プルダウン） |
-| group | references | null: false, foreign_key: true | groupsテーブルの外部キー |
 | user | references | null: false, foreign_key: true | userテーブルの外部キー |
+| group | references | null: false, foreign_key: true | groupsテーブルの外部キー |
 
 has_one :finish
 has_one :priority
