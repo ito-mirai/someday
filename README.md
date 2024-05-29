@@ -16,9 +16,10 @@ has_many :groups
 | --- | --- | --- | --- |
 | group_name | string | null: false | グループの名称 |
 | group_memo | text |  | グループの補足 |
+| user | references | null: false, foreign_key: true | userテーブルの外部キー |
 
 has_many :tasks
-belongs_to :group
+belongs_to :user
 
 ### tasksテーブル（Taskモデル）
 
@@ -31,7 +32,7 @@ belongs_to :group
 
 has_one :finish
 has_one :priority
-belongs_to :user
+belongs_to :group
 
 ### finishesテーブル（Finishモデル）
 
