@@ -9,6 +9,7 @@
 | encrypted_password | string | null: false | パスワード |
 
 has_many :groups
+has_many :tasks
 
 ### groupsテーブル（Groupモデル）
 
@@ -29,10 +30,12 @@ belongs_to :user
 | memo | text |  | タスクの補足 |
 | type_id | integer | null: false | タスクのタイプ（プルダウン） |
 | group | references | null: false, foreign_key: true | groupsテーブルの外部キー |
+| user | references | null: false, foreign_key: true | userテーブルの外部キー |
 
 has_one :finish
 has_one :priority
 belongs_to :group
+belongs_to :user
 
 ### finishesテーブル（Finishモデル）
 

@@ -3,4 +3,19 @@
   <div>index画面</div>
   <div><%= link_to "group new", new_group_path %></div>
   <div><%= link_to "task new", new_task_path %></div>
+  <% if user_signed_in? %>
+    <% @groups.each do |group| %>
+      <div class = "group">
+        <%= group.group_name %>
+        <div>
+          <%= group.group_memo %>
+          <% group.tasks.each do |task| %>
+            <div class = "task">
+              <%= task.content %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </main>

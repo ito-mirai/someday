@@ -1,3 +1,11 @@
 header{
   background-color: lightyellow;
 }
+
+.group{
+  background-color: lightsteelblue;
+}
+
+.task{
+  background-color: lightcyan;
+}
