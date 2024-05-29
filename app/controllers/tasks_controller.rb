@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   def index
     if user_signed_in?
       @groups = Group.where(user_id: current_user.id)
+      @tasks = Task.where(user_id: current_user.id)
     end
   end
 
@@ -22,7 +23,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:group_id, :content, :memo, :type_id)
+    params.require(:task).permit(:group_id, :content, :memo, :type_id).merge(user_id: current_user.id)
   end
 
 end
