@@ -1,3 +1,4 @@
+<main>
 <%= render partial: "shared/header" %>
 <div>tasks new画面</div>
 <%= form_with model: @task, url:tasks_path do |form| %>
@@ -7,3 +8,4 @@
   <div><%= form.collection_select(:type_id, Type.all, :id, :name, {}, {}) %></div>
   <div><%= form.submit %></div>
 <% end %>
+</main>

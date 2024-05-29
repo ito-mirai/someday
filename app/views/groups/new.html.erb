@@ -1,3 +1,4 @@
+<main>
 <%= render partial: "shared/header" %>
 <div>groups new画面</div>
 <%= form_with model: @group, url:groups_path do |form| %>
@@ -5,3 +6,4 @@
   <div><%= form.text_area :group_memo %></div>
   <div><%= form.submit %></div>
 <% end %>
+</main>
