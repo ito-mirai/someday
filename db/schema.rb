@@ -24,10 +24,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_28_031539) do
     t.string "content", null: false
     t.text "memo"
     t.integer "type_id", null: false
+    t.bigint "user_id", null: false
     t.bigint "group_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_tasks_on_group_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|
@@ -45,4 +47,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_28_031539) do
 
   add_foreign_key "groups", "users"
   add_foreign_key "tasks", "groups"
+  add_foreign_key "tasks", "users"
 end
