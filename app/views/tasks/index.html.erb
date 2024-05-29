@@ -11,6 +11,7 @@
           <%= group.group_memo %>
           <% group.tasks.each do |task| %>
             <div class = "task">
+              <%= check_box_tag 'finish', true, task.finish.present?, {data: { task_id: task.id }} %>
               <%= task.content %>
             </div>
           <% end %>
