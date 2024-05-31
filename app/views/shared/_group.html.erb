@@ -1,0 +1,7 @@
+<div class = "group">
+  <%= link_to group.group_name, group_path(group.id) %>
+  <div>
+    <%= group.group_memo %>
+    <%= render partial: "shared/tasks", locals: { group: group } %>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<%= render partial: "shared/header" %>
+<main>
+  <div>task show画面</div>
+  <div><%= link_to "group new", new_group_path %></div>
+  <div><%= link_to "task new", new_task_path %></div>
+  <div class = "group">
+    <%= link_to @task.group.group_name, group_path(@task.group.id) %>
+  </div>
+  <%= check_box_tag 'finish', @task.id, @task.finish.present?, {class: "finish_checkbox", data: { task_id: @task.id,finish_id: @task.finish&.id }} %>
+  <%= form_with model: @task, url:task_path do |form| %>
+    <div><%= form.text_field :content %></div>
+    <div><%= form.text_area :memo %></div>
+    <div><%= form.collection_select(:type_id, Type.all, :id, :name, {}, {}) %></div>
+    <div><%= form.submit %></div>
+  <% end %>
+</main>
