@@ -13,4 +13,5 @@
     <div><%= form.collection_select(:type_id, Type.all, :id, :name, {}, {}) %></div>
     <div><%= form.submit %></div>
   <% end %>
+  <%= button_to "タスクを削除", task_path, method: :delete %>
 </main>

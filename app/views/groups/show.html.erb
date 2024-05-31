@@ -10,5 +10,6 @@
       <div><%= f.submit %></div>
     <% end %>
     <%= render partial: "shared/tasks", locals: { group: @group } %>
+    <%= button_to "グループを削除", group_path, method: :delete %>
   <% end %>
 </main>

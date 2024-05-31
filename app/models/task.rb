@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :group
-  has_one :finish
+  has_one :finish, dependent: :destroy
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :type
