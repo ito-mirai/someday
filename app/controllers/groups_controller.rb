@@ -12,6 +12,19 @@ class GroupsController < ApplicationController
     end
   end
 
+  def show
+    @group = Group.find(params[:id])
+  end
+
+  def update
+    @group = Group.find(params[:id])
+    if @group.update(group_params)
+      redirect_to root_path
+    else
+      render :show, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def group_params

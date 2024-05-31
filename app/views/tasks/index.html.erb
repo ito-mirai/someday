@@ -5,18 +5,7 @@
   <div><%= link_to "task new", new_task_path %></div>
   <% if user_signed_in? %>
     <% @groups.each do |group| %>
-      <div class = "group">
-        <%= group.group_name %>
-        <div>
-          <%= group.group_memo %>
-          <% group.tasks.each do |task| %>
-            <div class = "task">
-              <%= check_box_tag 'finish', task.id, task.finish.present?, {class: "finish_checkbox", data: { task_id: task.id,finish_id: task.finish&.id }} %>
-              <%= task.content %>
-            </div>
-          <% end %>
-        </div>
-      </div>
+      <%= render partial: "shared/group", locals: { group: group } %>
     <% end %>
   <% end %>
 </main>

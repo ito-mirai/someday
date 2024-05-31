@@ -1,0 +1,6 @@
+<% group.tasks.each do |task| %>
+  <div class = "task">
+    <%= check_box_tag 'finish', task.id, task.finish.present?, {class: "finish_checkbox", data: { task_id: task.id,finish_id: task.finish&.id }} %>
+    <%= task.content %>
+  </div>
+<% end %>
