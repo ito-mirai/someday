@@ -1,7 +1,12 @@
-<div class = "group">
-  <%= link_to group.group_name, group_path(group.id) %>
-  <div>
+<div class="shared__group_container">
+  <div class="shared__group_head">
+    <h3 class="shared__group_name"><%= group.group_name %></h3>
+    <div class="shared__group_tasks">
+      <h4 class="shared__group_count"><%= "#{group.tasks.count}個のタスク" %></h4>
+      <h4 class="shared__group_show"><%= link_to "＞", group_path(group.id), class: "shared__group_show_link"%></h4>
+    </div>
+  </div>
+  <div class="shared__group_memo">
     <%= group.group_memo %>
-    <%= render partial: "shared/tasks", locals: { group: group } %>
   </div>
 </div>

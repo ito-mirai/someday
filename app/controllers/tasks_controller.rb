@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   def index
     if user_signed_in?
       @groups = Group.where(user_id: current_user.id)
-      # @tasks = Task.where(user_id: current_user.id)
+      @tasks = Task.where(user_id: current_user.id)
     end
   end
 

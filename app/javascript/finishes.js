@@ -1,7 +1,7 @@
 function finish (){
 
   // 全てのチェックボックスを要素として取得
-  const finish_checkboxs = document.getElementsByClassName("finish_checkbox")
+  const finish_checkboxs = document.getElementsByClassName("finish_checkbox_box")
   
   // ループを使用して、各チェックボックスにイベントリスナーを追加
   for (let finish_checkbox of finish_checkboxs) {
