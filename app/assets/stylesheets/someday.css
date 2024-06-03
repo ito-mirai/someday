@@ -247,6 +247,25 @@ groups/show
 
 .groups__show_index_box{
   display: flex;
+  align-items: center;
+  padding-top: 8px;
+}
+
+.groups__show_index_link_box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 48px;
+  border-radius: 8px;
+  padding: 4px;
+  background-color: #17856F;
+}
+
+.groups__show_index_link{
+  align-items: center;
+  color: #FFFFFF;
+  text-decoration: none;
 }
 
 .groups__show_form{
@@ -314,6 +333,109 @@ groups/show
 }
 
 .groups__show_group_delete_btn{
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: #a02121;
+  color: #FFFFFF;
+}
+
+/* ------------------------------------------
+tasks/show
+------------------------------------------ */
+
+.tasks__show_index_box{
+  display: flex;
+  align-items: center;
+  padding-top: 8px;
+}
+
+.tasks__show_index_link_box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 48px;
+  border-radius: 8px;
+  padding: 4px;
+  background-color: #17856F;
+}
+
+.tasks__show_index_link{
+  align-items: center;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.tasks__show_form{
+  width: 100%;
+  margin: 8px;
+  border-radius: 12px;
+  padding: 16px;
+  background-color: #DF8A3E;
+}
+
+.tasks__show_form_container{
+  margin: 8px;
+}
+
+.inbox{
+  width: 100%;
+}
+
+.tasks__show_form_container input[type='text']{
+  font-size: 24px;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 8px;
+	transition: 0.3s;
+  letter-spacing: 0.04em;
+	border: 1px solid #FFFFFF;
+	border-radius: 8px;
+}
+
+.tasks__show_form_container textarea{
+	box-sizing: border-box;
+	width: 100%;
+	padding: 8px;
+	transition: 0.3s;
+	border: 1px solid #FFFFFF;
+	border-radius: 8px;
+}
+
+.tasks__show_form_content input[type='text']:focus{
+	border: 1px solid #DF8A3E;
+	outline: none;
+	box-shadow: 0 0 5px 1px #A04521;
+}
+
+.tasks__show_form_memo textarea:focus{
+	border: 1px solid #DF8A3E;
+	outline: none;
+	box-shadow: 0 0 5px 1px #A04521;
+}
+
+.tasks__show_form_submit{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 8px;
+}
+
+.tasks__show_form_submit_btn{
+  border: 1px solid #FFFFFF;
+  border-radius: 4px;
+  padding: 8px;
+  background-color: #A04521;
+  color: #FFFFFF;
+}
+
+.tasks__show_task_delete{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 16px;
+}
+
+.tasks__show_task_delete_btn{
   border: none;
   border-radius: 8px;
   padding: 8px;

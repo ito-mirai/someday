@@ -2,7 +2,9 @@
 <main>
 <% if user_signed_in? %>
   <h1 class="groups__show_index_box">
-    <%= link_to "＜", root_path, class:"groups__show_index_link" %>
+    <div class="groups__show_index_link_box">
+      <%= link_to "＜", root_path, class:"groups__show_index_link" %>
+    </div>
     <div class="groups__show_index_snt">全てのグループへ</div>
   </h1>
   <%= form_with model: @group, url:group_path, local: true, class:"groups__show_form" do |f| %>

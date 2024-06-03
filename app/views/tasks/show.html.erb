@@ -1,17 +1,39 @@
 <%= render partial: "shared/header" %>
 <main>
-  <div>task show画面</div>
-  <div><%= link_to "group new", new_group_path %></div>
-  <div><%= link_to "task new", new_task_path %></div>
-  <div class = "group">
-    <%= link_to @task.group.group_name, group_path(@task.group.id) %>
-  </div>
-  <%= check_box_tag 'finish', @task.id, @task.finish.present?, {class: "finish_checkbox", data: { task_id: @task.id,finish_id: @task.finish&.id }} %>
-  <%= form_with model: @task, url:task_path do |form| %>
-    <div><%= form.text_field :content %></div>
-    <div><%= form.text_area :memo %></div>
-    <div><%= form.collection_select(:type_id, Type.all, :id, :name, {}, {}) %></div>
-    <div><%= form.submit %></div>
+  <h1 class="tasks__show_index_box">
+    <div class="groups__show_index_link_box">
+      <%= link_to "＜", root_path, class:"tasks__show_index_link" %>
+    </div>
+    <div class="tasks__show_index_snt">全てのタスクへ</div>
+  </h1>
+  <%= render partial: "shared/group", locals: { group: @task.group } %>
+  <h1>タスク</h1>
+  <%= form_with model: @task, url:task_path, local: true, class:"tasks__show_form" do |f| %>
+    <label class="finish_checkbox">
+      <%= check_box_tag 'finish', @task.id, @task.finish.present?, {class: "finish_checkbox_box", data: { task_id: @task.id,finish_id: @task.finish&.id }} %>
+      <span class="finish_checkbox-DummyInput"></span>
+      <div class="tasks__show_form_container inbox">
+        <label class="tasks__show_form_content">
+          <%= f.text_field :content %>
+        </label>
+      </div>
+    </label>
+    <div class="tasks__show_form_container">
+      <label class="tasks__show_form_memo">
+        <%= f.text_area :memo %>
+      </label>
+    </div>
+    <div class="tasks__show_form_container">
+      <label class="tasks__show_form_type">
+        <%= f.collection_select(:type_id, Type.all, :id, :name, {}, {}) %>
+      </label>
+    </div>
+    <div class="tasks__show_form_submit">
+      <%= f.submit "更新する", class:"tasks__show_form_submit_btn" %>
+    </div>
   <% end %>
-  <%= button_to "タスクを削除", task_path, method: :delete %>
+  <div class="tasks__show_task_delete">
+    <%= button_to "タスクを削除", task_path, method: :delete, class:"tasks__show_task_delete_btn" %>
+  </div>
 </main>
+<%= render partial: "shared/footer" %>
