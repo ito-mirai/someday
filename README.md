@@ -62,6 +62,6 @@ belongs_to :finish
 | カラム名 | データ型 | オプション | 備考 |
 | --- | --- | --- | --- |
 | message | text | null: false | メッセージ内容 |
-| Speaker | integer | null: false | 発言者
+| speaker | integer | null: false | 発言者
 0がユーザーで1がアプリ |
 | type | integer | null:false | メッセージ属性 |

@@ -1,0 +1,18 @@
+<%= render partial: "shared/header" %>
+<main>
+<% if user_signed_in? %>
+  <h1>メッセージ</h1>
+  <% @messages.each do |message| %>
+    <div class="message">
+      <div><%= message.speaker %></div>
+      <div><%= message.message %></div>
+      <div><%= "type:#{message.message_type}" %></div>
+    </div>
+  <% end %>
+<% end %>
+  <%= form_with model:@message, url:messages_path, local: true do |f| %>
+    <%= f.text_area :message %>
+    <%= f.submit %>
+  <% end %>
+</main>
+<%= render partial: "shared/footer" %>
