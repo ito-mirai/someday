@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
   def create
     # ユーザーとAIの双方のメッセージが正常に保存された時のみ完了する
     ActiveRecord::Base.transaction do
-      
+
       # ユーザーのメッセージを保存
       user_message = Message.new(message_params)
       user_message.save!
@@ -35,7 +35,7 @@ class MessagesController < ApplicationController
   private
 
   def messages_all
-    @messages = Message.all
+    @messages = Message.where(user_id: current_user.id)
   end
 
   def message_params

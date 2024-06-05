@@ -35,7 +35,7 @@ class ChatGptService
 
   end
 
-  # プロンプトを使用したメッセージ生成
+  # プロンプトを踏まえてメッセージ生成
   def chat(pronpt)
     response = @openai.chat(
       parameters: {
@@ -44,7 +44,7 @@ class ChatGptService
         temperature: 0.7, # 応答のランダム性を指定
         max_tokens: 200,  # 応答の長さを指定
       },
-      )
+    )
     response['choices'].first['message']['content']
   end
 
