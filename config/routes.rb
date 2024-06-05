@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :tasks, only: [:index, :new, :create, :show, :update, :destroy] do
     resources :finishes, only: [:create, :destroy]
   end
+  resources :messages, only: [:index, :new, :create, :destroy]
 end

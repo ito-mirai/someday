@@ -46,7 +46,7 @@ belongs_to :user
 has_one :priority
 belongs_to :task
 
-### prioritiesテーブル（prioritiyモデル）
+### prioritiesテーブル（Priorityモデル）
 
 | カラム名 | データ型 | オプション | 備考 |
 | --- | --- | --- | --- |
@@ -56,3 +56,12 @@ belongs_to :task
 
 belongs_to :task
 belongs_to :finish
+
+### messagesテーブル（Messageモデル）
+
+| カラム名 | データ型 | オプション | 備考 |
+| --- | --- | --- | --- |
+| message | text | null: false | メッセージ内容 |
+| speaker | integer | null: false | 発言者
+0がユーザーで1がアプリ |
+| type | integer | null:false | メッセージ属性 |
