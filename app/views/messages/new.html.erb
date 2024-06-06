@@ -17,6 +17,9 @@
           <% end %>
         </div>
       </div>
+      <% if message.message_type == 3 %>
+        <div><%= button_to "グループとタスクを登録する", action: "create", controller: "tasks" %></div>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

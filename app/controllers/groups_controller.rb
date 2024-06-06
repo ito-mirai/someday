@@ -1,4 +1,11 @@
 class GroupsController < ApplicationController
+
+  # ログインしていないとき、ログインページへ遷移する
+  before_action :authenticate_user!
+
+  # 特定のgroupをparamsのidから取得
+  before_action :find_group
+
   def new
     @group = Group.new
   end
@@ -13,11 +20,9 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])
   end
 
   def update
-    @group = Group.find(params[:id])
     if @group.update(group_params)
       redirect_to root_path
     else
@@ -26,12 +31,15 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    @group = Group.find(params[:id])
     @group.destroy
     redirect_to root_path
   end
 
   private
+
+  def find_group
+    @group = Group.find(params[:id])
+  end
 
   def group_params
     params.require(:group).permit(:group_name, :group_memo).merge(user_id: current_user.id)

@@ -1,7 +1,10 @@
 class MessagesController < ApplicationController
 
+  # ログインしていないとき、ログインページへ遷移する
+  before_action :authenticate_user!
+
   # 全てのmessageを取得する
-  before_action :messages_all, only: [:new, :create]
+  before_action :messages_all
 
   def new
     @message = Message.new
@@ -16,9 +19,8 @@ class MessagesController < ApplicationController
       user_message.save!
 
       # ChatGptServiceサービスでの処理
-      gpt = ChatGptService.new
-
       user_message = message_params[:message]
+      gpt = ChatGptService.new
       pronpts = gpt.chinese_room(@messages, user_message)
 
       # AIのメッセージを保存
@@ -29,9 +31,6 @@ class MessagesController < ApplicationController
     end
     
     redirect_to new_message_path
-  end
-
-  def destroy
   end
 
   private
