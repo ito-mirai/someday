@@ -1,6 +1,5 @@
 <%= render partial: "shared/header" %>
 <main>
-<% if user_signed_in? %>
   <h1>メッセージ</h1>
   <h4>何か困っていることはありますか?</h4>
   <% @messages.each do |message| %>
@@ -22,7 +21,9 @@
       <% end %>
     <% end %>
   <% end %>
-<% end %>
+  <% unless @messages == [] %>
+    <div><%= button_to "メッセージをリセット", message_path(@messages[0][:id]), method: :delete %></div>
+  <% end %>
   <%= form_with model:@message, url:messages_path, local: true do |f| %>
     <%= f.text_area :message %>
     <%= f.submit %>
