@@ -29,7 +29,11 @@ class MessagesController < ApplicationController
         gpt_message.save!
       end
     end
-    
+    redirect_to new_message_path
+  end
+
+  def destroy
+    Message.where(user_id: current_user.id).destroy_all
     redirect_to new_message_path
   end
 
