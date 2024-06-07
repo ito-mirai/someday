@@ -17,6 +17,7 @@ class TaskDecomposerService
       task_array.each do |task|
         task = task.delete_prefix("・")
 
+        # 各タスクに属性を付与する
         gpt = ChatGptService.new
         type_id = gpt.task_type_setting(task)
         if 1 < type_id.to_i && type_id.to_i < 10
