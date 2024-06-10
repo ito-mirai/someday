@@ -14,6 +14,19 @@ class ChatGptService
     pronpt
   end
 
+  # タスクに対して適切な属性を設定
+  def task_type_setting(task)
+    # タスクを分析して属性を割り当てるプロンプトの適用
+    @content = "あなたは提示されたタスクから適切なタスク属性を設定するシステムです。\n提示されたタスクに対して、以下に用意したタスク属性の中からどれを割り当てるのが適切か判断してください。\n\n：注意点\n判断結果を出力する際には、数字だけ出力してください。\nまた数字は半角数字を出力してください。\n数字は2〜9のみ使用してください。\n\n：例\n・提示されたタスク\nゴミは回収日に捨てる\n・出力結果\n2\n\n### タスク属性\n2：家事\n3：買い物\n4：趣味\n5：イベント\n6：健康\n7：友人・家庭\n8：財務管理\n9：その他"
+    @prompt = [{ role: "system", content: @content }]
+
+    # タスクを提示
+    @prompt << { role: "user", content: task }
+    # 分析を実行（gpt_4oを使用）
+    gpt_4o_check(@prompt)
+  end
+
+  #-------------------------------------------------------------
   private
 
   # メッセージの進行具合を確認
@@ -123,7 +136,7 @@ class ChatGptService
   def task_detailed_check
 
     # タスク詳細度チェック用プロンプトの追加（チェック結果出力時に削除）
-    @prompt << {role: "system", content: "あなたはタスクを箇条書きで列挙する前に、ユーザーの回答がタスクを提案するのに十分な情報量だったのか判断するシステムです。\nユーザーの回答が曖昧な場合、より詳細な情報を引き出す必要があります。タスクを生成するのに十分であれば適切と判断し、あまりにも不十分であれば不適切と判断してください。\n出力は以下の通りに行なってください。\n1.回答が適切だった\nture\n2.回答が不適切だった\nfalse" }
+    @prompt << {role: "system", content: "あなたはタスクを箇条書きで列挙する前に、ユーザーの回答がタスクを提案するのに十分な情報量だったのか判断するシステムです。\nユーザーの回答があまりにも曖昧な場合、より詳細な情報を引き出す必要があります。タスクを生成するのに十分であれば適切と判断し、あまりにも不十分であれば不適切と判断してください。\n出力は以下の通りに行なってください。\n1.回答が適切だった\nture\n2.回答が不適切だった\nfalse" }
     @task_detailed_check_result = check(@prompt)
     @prompt.pop
   end
@@ -172,6 +185,9 @@ class ChatGptService
     end
   end
 
+
+
+
   # ------------------------------------------------------------
   #      生成機構
   # ------------------------------------------------------------
@@ -179,7 +195,7 @@ class ChatGptService
   def chat(pronpt)
     response = @openai.chat(
       parameters: {
-        model: "gpt-3.5-turbo", # Required. # 使用するGPT-3のエンジンを指定
+        model: "gpt-4o",
         messages: pronpt,
         temperature: 1, # 応答のランダム性を指定
         max_tokens: 500,  # 応答の長さを指定
@@ -192,7 +208,20 @@ class ChatGptService
   def check(pronpt)
     response = @openai.chat(
       parameters: {
-        model: "gpt-3.5-turbo", # Required. # 使用するGPT-3のエンジンを指定
+        model: "gpt-3.5-turbo",
+        messages: pronpt,
+        temperature: 0.5, # 応答のランダム性を指定
+        max_tokens: 10,  # 応答の長さを指定
+      },
+    )
+    response['choices'].first['message']['content']
+  end
+
+  # ----------高度判断機構----------
+  def gpt_4o_check(pronpt)
+    response = @openai.chat(
+      parameters: {
+        model: "gpt-4o",
         messages: pronpt,
         temperature: 0.5, # 応答のランダム性を指定
         max_tokens: 10,  # 応答の長さを指定

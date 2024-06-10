@@ -5,8 +5,25 @@
   <% @messages.each do |message| %>
     <% unless message.message_type == 100 %>
       <div class="message">
-        <div><%= message.speaker %></div>
-        <div><%= message.message %></div>
+        <div>
+          <%= message.speaker %>
+        </div>
+
+        <% if message.message_type == 1 || message.message_type == 3 %>
+
+          <%= form_with model:message, url:message_path(message.id), local: true do |f| %>
+              <div>
+                <%= f.text_area :message %>
+              </div>
+              <%= f.submit "提案を修正" %>
+          <% end %>
+
+        <% else %>
+          <div>
+            <%= message.message %>
+          </div>
+        <% end %>
+
         <div>
           <%= "type:#{message.message_type}" %>
           <% if message.message_type == 1 %>
@@ -15,6 +32,7 @@
             <div>タスクの提案</div>
           <% end %>
         </div>
+
       </div>
       <% if message.message_type == 3 %>
         <div><%= button_to "グループとタスクを登録する", action: "create", controller: "tasks" %></div>
@@ -24,6 +42,7 @@
   <% unless @messages == [] %>
     <div><%= button_to "メッセージをリセット", message_path(@messages[0][:id]), method: :delete %></div>
   <% end %>
+
   <%= form_with model:@message, url:messages_path, local: true do |f| %>
     <%= f.text_area :message %>
     <%= f.submit %>
