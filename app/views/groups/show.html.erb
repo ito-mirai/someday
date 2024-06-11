@@ -1,31 +1,35 @@
 <%= render partial: "shared/header" %>
 <main>
 <% if user_signed_in? %>
-  <h1 class="groups__show_index_box">
-    <div class="groups__show_index_link_box">
-      <%= link_to "＜", root_path, class:"groups__show_index_link" %>
+  <div class="page_link_area">
+    <div class="page_link_btn_container">
+      <%= link_to "＜ すべてのグループ", groups_path, class:"page_link_btn" %>
     </div>
-    <div class="groups__show_index_snt">全てのグループへ</div>
-  </h1>
-  <%= form_with model: @group, url:group_path, local: true, class:"groups__show_form" do |f| %>
-    <div class="groups__show_form_container">
-      <label class="groups__show_form_group_name">
-        <%= f.text_field :group_name %>
-      </label>
-    </div>
-    <div class="groups__show_form_container">
-      <label class="groups__show_form_group_memo">
-        <%= f.text_area :group_memo %>
-      </label>
-    </div>
-    <div class="groups__show_form_submit">
-      <%= f.submit "更新する", class:"groups__show_form_submit_btn" %>
-    </div>
-  <% end %>
-  <div class="groups__show_group_delete">
-    <%= button_to "グループを削除", group_path, method: :delete, class:"groups__show_group_delete_btn" %>
   </div>
-  <h1>グループのタスク</h1>
+  <h1 class="heading1">―― グループを編集 ――</h1>
+  <div class="groups__show_form_container">
+    <%= form_with model: @group, url:group_path, local: true, class:"groups__show_form" do |f| %>
+      <div class="groups__show_label_area">
+        <h3 class="groups__show_text_field_container">
+          <%= f.text_field :group_name, placeholder:"概要を入力する（必須）", class:"groups__show_text_field" %>
+        </h3>
+      </div>
+      <div class="groups__show_label_area">
+        <div class="groups__show_text_area_container">
+          <%= f.text_area :group_memo, placeholder:"メモを入力する", class:"groups__show_text_area" %>
+        </div>      
+      </div>
+      <div class="groups__show_form_btn_area">
+        <div class="action_btn_area">
+          <%= f.submit "更新する", class:"update_action_btn" %>
+        </div>
+        <div class="action_btn_area">
+          <%= button_to "削除する", group_path, method: :delete, class:"delete_action_btn" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <h1 class="heading1">―― グループのタスク ――</h1>
   <% @group.tasks.each do |task| %>
     <%= render partial: "shared/task", locals: { task: task } %>
   <% end %>

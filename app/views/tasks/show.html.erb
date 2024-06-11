@@ -1,39 +1,48 @@
 <%= render partial: "shared/header" %>
 <main>
-  <h1 class="tasks__show_index_box">
-    <div class="groups__show_index_link_box">
-      <%= link_to "＜", root_path, class:"tasks__show_index_link" %>
+  <div class="page_link_area">
+    <div class="page_link_btn_container">
+      <%= link_to "＜ タスク一覧", tasks_path, class:"page_link_btn" %>
     </div>
-    <div class="tasks__show_index_snt">全てのタスクへ</div>
-  </h1>
+  </div>
+  <h1 class="heading1">―― タスクのグループ ――</h1>
   <%= render partial: "shared/group", locals: { group: @task.group } %>
-  <h1>タスク</h1>
-  <%= form_with model: @task, url:task_path, local: true, class:"tasks__show_form" do |f| %>
-    <label class="finish_checkbox">
-      <%= check_box_tag 'finish', @task.id, @task.finish.present?, {class: "finish_checkbox_box", data: { task_id: @task.id,finish_id: @task.finish&.id }} %>
-      <span class="finish_checkbox-DummyInput"></span>
-      <div class="tasks__show_form_container inbox">
-        <label class="tasks__show_form_content">
-          <%= f.text_field :content %>
+  <h1 class="heading1">―― タスクの編集 ――</h1>
+  <div class="tasks__show_form_area">
+    <%= form_with model: @task, url:task_path, local: true, class:"tasks__show_form" do |f| %>
+      <div class="tasks__show_label_area">
+        <label class="finish_checkbox_label">
+          <div class="finish_checkbox_container">
+            <%= check_box_tag 'finish', @task.id, @task.finish.present?, {class: "finish_checkbox_box", data: { task_id: @task.id,finish_id: @task.finish&.id }} %>
+            <span class="finish_checkbox-DummyInput"></span>
+          </div>
+          <h3 class="tasks__show_text_field_area">
+            <%= f.text_field :content, placeholder:"タスクを入力する（必須）", class:"tasks__show_text_field" %>
+          </h3>
         </label>
       </div>
-    </label>
-    <div class="tasks__show_form_container">
-      <label class="tasks__show_form_memo">
-        <%= f.text_area :memo %>
-      </label>
-    </div>
-    <div class="tasks__show_form_container">
-      <label class="tasks__show_form_type">
-        <%= f.collection_select(:type_id, Type.all, :id, :name, {}, {}) %>
-      </label>
-    </div>
-    <div class="tasks__show_form_submit">
-      <%= f.submit "更新する", class:"tasks__show_form_submit_btn" %>
-    </div>
-  <% end %>
-  <div class="tasks__show_task_delete">
-    <%= button_to "タスクを削除", task_path, method: :delete, class:"tasks__show_task_delete_btn" %>
+      <div class="tasks__show_label_area">
+        <label class="tasks__show_label">
+          <div class="tasks__show_collection_select_area">
+            <%= f.collection_select(:type_id, Type.all, :id, :name, {}, {class:"tasks__show_collection_select"}) %>
+          </div>
+        </label>
+      </div>
+      <div class="tasks__show_label_area">
+        <div class="tasks__show_text_area_container">
+          <%= f.text_area :memo, placeholder:"メモを入力する", class:"tasks__show_text_area" %>
+        </div>
+      </div>
+      <div class="tasks__show_form_btn_area">
+        <div class="action_btn_area">
+          <%= f.submit "更新する", class:"update_action_btn" %>
+        </div>
+        <div class="action_btn_area">
+          <%= button_to "削除する", task_path, method: :delete, class:"delete_action_btn" %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </main>
 <%= render partial: "shared/footer" %>
+
