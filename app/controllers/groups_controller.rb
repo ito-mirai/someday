@@ -4,7 +4,11 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!
 
   # 特定のgroupをparamsのidから取得
-  before_action :find_group
+  before_action :find_group, except: :index
+
+  def index
+    @groups = Group.where(user_id: current_user.id)
+  end
 
   def new
     @group = Group.new
