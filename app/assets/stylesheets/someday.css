@@ -146,36 +146,37 @@ footer
 shared/_group
 ------------------------------------------ */
 
-.shared__group_container{
-  width: 100%;
-  margin: 8px;
-  border-radius: 12px;
-  padding: 16px;
-  background-color: #6BAF8F;
-  color: #FFFFFF;
+.shared__group_area{
+  margin: 8px 0;
 }
 
-.shared__group_head{
+.shared__group_head_area{
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 }
 
-.shared__group_tasks{
+.shared__group_name{
+  width: calc(100% - 128px);
+}
+
+.shared__group_task_count{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  width: 56px;
 }
 
-.shared__group_count{
-  margin-right: 16px;
+.shared__group_memo_area{
+  margin: 0 128px 0 40px;
 }
 
-.shared__group_show{
-  margin-left: 16px;
+.shared__group_memo{
+  font-size: 14px;
+  color: #8C8C8C;
 }
 
-.shared__group_show_link{
-  color: #FFFFFF;
-  text-decoration: none;
+.shared__group_underline{
+  margin-top: 8px;
+  border-bottom: 1px solid #8C8C8C;
 }
 
 /* ------------------------------------------
@@ -217,11 +218,6 @@ shared/_task
 
 .shared__task_checkbox_label_container{
   width: 100%;
-}
-
-.shared__task_show_link_to{
-  color: #f7f7f7;
-  text-decoration: none;
 }
 
 .shared__task_detail_area{
@@ -557,10 +553,20 @@ square_link_btn
   background-color: #B8BECC;
   font-size: 24px;
   font-weight: 900;
+  color: #f7f7f7;
+  text-decoration: none;
   transition: 0.15s;
 }
 
 .square_link_btn:hover{
   background-color: #7D88A1;
   transform: scale(1.1);
+}
+
+/* ------------------------------------------
+nowrap
+------------------------------------------ */
+
+.nowrap{
+  white-space: nowrap
 }
