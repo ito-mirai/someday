@@ -1,0 +1,50 @@
+
+<%# 発言者がユーザーの場合 %>
+<% if message.speaker == 0 %>
+  <div class="message_area">
+    <div class="speaker user"><%= username %></div>
+    <div class="message_chat_area user">
+      <div class="message_chat"><%= message.message %></div>
+    </div>
+  </div>
+
+<%# 発言者がAIの場合 %>
+<% elsif message.speaker == 1 %>
+  <div class="message_area">
+    <div class="speaker ai">AIアシスタント</div>
+    <div class="message_chat_area">
+
+      <%# 提案メッセージ %>
+      <% if message.message_type == 1 || message.message_type == 3 %>
+        <%= form_with model:message, url:message_path(message.id), local: true, class:"message_chat_form" do |f| %>
+          <div class="message_chat_text_area_container">
+            <%= f.text_area :message, class:"message_chat_text_area" %>
+          </div>
+          <div class="message_update_area">
+            <%= f.submit "提案を修正", class:"update_action_btn" %>
+          </div>
+        <% end %>
+      <%# 400番台メッセージ %>
+      <% elsif message.message_type >= 400 %>
+        <div class="message_chat message_type_400"><%= message.message %></div>
+      <%# 300番台メッセージ %>
+      <% elsif message.message_type >= 300 %>
+        <div class="message_chat message_type_300"><%= message.message %></div>
+
+      <%# その他のメッセージ %>
+      <% else %>
+        <div class="message_chat"><%= message.message %></div>
+      <% end %>
+
+    </div>
+    <% if message.message_type == 1 %>
+      <div class="message_supplement">AIからあなたへグループが提案されました！</div>
+    <% elsif message.message_type == 3 %>
+      <div class="message_supplement">AIからあなたへタスクが提案されました！</div>
+    <% elsif message.message_type == 300 %>
+      <%# <div class="message_supplement">※タスクを登録するにはもっと情報が必要です。</div> %>
+    <% elsif message.message_type == 400 %>
+      <div class="message_supplement">※タスクを考えるには、もっと具体的な情報が必要です。</div>
+    <% end %>
+  </div>
+<% end %>

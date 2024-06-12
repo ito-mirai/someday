@@ -1,22 +1,29 @@
 <header>
-  <div class="header__box header__username">
-  <% if user_signed_in? %>
-    <%= link_to "#{current_user.username}のリマインダー", root_path %>
-  <% end %>
-  </div>
-  <div class="header__box header__title">ソノウチ</div>
-  <div class="header__box header__control">
-    <% if user_signed_in? %>
-    <div class="header__control_link_box">
-      <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "header__control_link" %>
+  <div class="header__link_area">
+    <div class="header__link_box">
+      <h1 class="header__title">
+        <%= link_to "ソノウチ", root_path, class:"header__title_link" %>
+      </h1>
     </div>
-    <% else %>
-    <div class="header__control_link_box">
-      <%= link_to "新規登録", new_user_registration_path, class: "header__control_link" %>
+    <div class="header__link_box left_shift">
+      <div class="header__user_control_area">
+      <% if user_signed_in? %>
+        <div class="header__user_control_link_box">
+          <div class="current_user"><%= "#{current_user.username}さん" %></div>
+        </div>
+        <div class="header__user_control_link_box">
+          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "header__user_control_link" %>
+        </div>
+      <% else %>
+        <div class="header__user_control_link_box">
+          <%= link_to "新規登録", new_user_registration_path, class: "header__user_control_link" %>
+        </div>
+        <div class="header__user_control_link_box">
+          <%= link_to "ログイン", new_user_session_path, class: "header__user_control_link" %>
+        </div>
+      <% end %>
+      </div>
     </div>
-    <div class="header__control_link_box">
-      <%= link_to "ログイン", new_user_session_path, class: "header__control_link" %>
-    </div>
-    <% end %>
   </div>
 </header>
+

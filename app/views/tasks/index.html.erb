@@ -1,11 +1,12 @@
 <%= render partial: "shared/header" %>
 <main>
 <% if user_signed_in? %>
-  <h1>全てのグループ</h1>
-  <% @groups.each do |group| %>
-    <%= render partial: "shared/group", locals: { group: group } %>
-  <% end %>
-  <h1>タスク一覧</h1>
+  <div class="page_link_area">
+    <div class="page_link_btn_container">
+      <%= link_to "＞ すべてのグループ", groups_path, class:"page_link_btn" %>
+    </div>
+  </div>
+  <h1 class="heading1">―― タスク一覧 ――</h1>
   <% @tasks.each do |task| %>
     <%= render partial: "shared/task", locals: { task: task } %>
   <% end %>

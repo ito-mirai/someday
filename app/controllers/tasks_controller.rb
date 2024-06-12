@@ -9,13 +9,11 @@ class TasksController < ApplicationController
   # 特定のtaskをparamsのidから取得
   before_action :task_find, only: [:show, :update, :destroy]
 
-  def index
-    @groups = Group.where(user_id: @user)
-    @tasks = Task.where(user_id: @user)
-  end
+  # 編集権の制限
+  before_action :only_current_user, only: :show
 
-  def new
-    @task = Task.new
+  def index
+    @tasks = Task.where(user_id: @user)
   end
 
   def create
@@ -47,6 +45,12 @@ class TasksController < ApplicationController
 
   def current_user_id
     @user = current_user.id
+  end
+
+  def only_current_user
+    unless @user == @task.user_id
+      redirect_to root_path
+    end
   end
 
   def task_find

@@ -1,18 +1,27 @@
-<div class="shared__task_container">
-  <div class="shared__task_group">グループ：
-    <%= link_to task.group.group_name, group_path(task.group.id), class:"shared__task_group_link" %>
-  </div>
-  <div class="shared__task_box">
-    <label class="finish_checkbox">
-      <%= check_box_tag 'finish', task.id, task.finish.present?, {class: "finish_checkbox_box", data: { task_id: task.id,finish_id: task.finish&.id }} %>
-      <span class="finish_checkbox-DummyInput"></span>
-      <h3 class="shared__task_content"><%= task.content %></h3>
-      <div class="shared__task_type"><%= task.type.name %></div>
-    </label>
-    <div class="shared__task_show">
-      <%= link_to "＞", task_path(task.id), class:"shared__task_show_link" %>
+<div class="shared__task_area">
+  <div class="shared__task_group_area">
+    <div class="shared__task_group_container">
+        <%= link_to "＞　#{task.group.group_name}", group_path(task.group.id), class:"shared__task_group_link_to" %>
     </div>
   </div>
-  <div class="shared__task_memo"><%= task.memo %></div>
+  <div class="shared__task_content_area">
+    <div class="shared__task_checkbox_label_container">
+      <label class="finish_checkbox_label">
+        <div class="finish_checkbox_container">
+          <%= check_box_tag 'finish', task.id, task.finish.present?, {class: "finish_checkbox_box", data: { task_id: task.id,finish_id: task.finish&.id }} %>
+          <span class="finish_checkbox-DummyInput"></span>
+        </div>
+        <h3 class="shared__task_content"><%= task.content %></h3>
+      </label>
+    </div>
+    <div class="shared__task_show_link_container">
+      <%= link_to "＞", task_path(task.id), class:"shared__task_show_link_to square_link_btn" %>
+    </div>
+  </div>
+  <div class="shared__task_detail_area">
+    <div class="shared__task_type nowrap"><%= task.type.name %></div>
+    <div class="shared__task_hyphen">-</div>
+    <div class="shared__task_memo"><%= task.memo %></div>
+  </div>
+  <div class="underline"></div>
 </div>
-

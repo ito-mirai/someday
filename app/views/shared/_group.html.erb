@@ -1,12 +1,13 @@
-<div class="shared__group_container">
-  <div class="shared__group_head">
-    <h3 class="shared__group_name"><%= group.group_name %></h3>
-    <div class="shared__group_tasks">
-      <h4 class="shared__group_count"><%= "#{group.tasks.count}個のタスク" %></h4>
-      <h4 class="shared__group_show"><%= link_to "＞", group_path(group.id), class: "shared__group_show_link"%></h4>
+<div class="shared__group_area">
+  <div class="shared__group_head_area">
+    <h3 class="shared__group_name">・<%= group.group_name %></h3>
+    <h3 class="shared__group_task_count"><%= group.tasks.count %></h3>
+    <div class="shared__group_show_link_container">
+      <%= link_to "＞", group_path(group.id), class: "shared__group_show_link_to square_link_btn"%>
     </div>
   </div>
-  <div class="shared__group_memo">
-    <%= group.group_memo %>
+  <div class="shared__group_memo_area">
+    <div class="shared__group_memo"><%= group.group_memo %></div>
   </div>
+  <div class="underline"></div>
 </div>

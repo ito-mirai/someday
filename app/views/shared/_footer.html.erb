@@ -1,11 +1,9 @@
 <footer>
-  <div class="footer__create_link_box">
-    <%= link_to "グループを作成する", new_group_path, class: "footer__create_link" %>
-  </div>
-  <div class="footer__create_link_box">
-    <%= link_to "メッセージ", new_message_path, class: "footer__create_link" %>
-  </div>
-  <div class="footer__create_link_box">
-    <%= link_to "タスクを追加する", new_task_path, class: "footer__create_link" %>
+  <div class="footer__link_area">
+    <div class="footer__link_box">
+      <% if user_signed_in? %>
+        <%= link_to "タスクを考えて！", new_message_path, class: "footer__link_btn" %>
+      <% end %>
+    </div>
   </div>
 </footer>
