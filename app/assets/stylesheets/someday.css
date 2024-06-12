@@ -19,13 +19,13 @@ header{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: fixed;
+  /* position: fixed;
   top: 0px;
-  z-index: 10;
+  z-index: 10; */
   height: 64px;
   width: 100%;
-  background-color: #17856F;
-  color: white;
+  background-color: #78c1c4;
+  color: #f7f7f7;
 }
 
 main {
@@ -35,7 +35,7 @@ main {
   width: 100%;
   max-width: 1024px; /* PCでも一定の大きさを保つ */
   margin: 0 auto;
-  padding: 64px 0;
+  padding: 0 0 64px 0;
   min-height: 100vh;
 }
 
@@ -48,8 +48,8 @@ footer{
   z-index: 10;
   height: 64px;
   width: 100%;
-  background-color: #17856F;
-  color: white;
+  background-color: #78c1c4;
+  color: #f7f7f7;
 }
 
 h1{
@@ -409,8 +409,57 @@ tasks/show
 messages/new
 ------------------------------------------ */
 
-.message{
-  border: solid #000000;
+.chat_action_container{
+  display: flex;
+  justify-content: center;
+  border-radius: 16px;
+  padding: 8px;
+  /* background-color: #F7C58C; */
+}
+
+.chat_action_btn_area{
+  display: flex;
+  justify-content: center;
+  width: 25%;
+  margin-top: 16px;
+}
+
+.message__new_form_area{
+  margin: 8px 0;
+}
+
+.message__new_form_area{
+  display: flex;
+  justify-content: center;
+}
+
+.message__new_message_form{
+  width: 75%;
+  display: flex;
+  align-items: end;
+}
+
+.message__new_message_form_text_area_area{
+  width: 100%;
+}
+
+.message__new_message_form_text_area{
+  resize: none;
+  width: 100%;
+  border: none;
+  border-radius: 16px;
+  outline: none;
+  padding: 16px;
+  background-color: #EBEBEB;
+  transition: 0.15s;
+}
+
+.message__new_message_form_text_area:focus{
+  box-shadow: 0 0 4px 1px #55B1B5;
+}
+
+.message__new_message_form_submit_area{
+  margin: 8px;
 }
 
 /* ------------------------------------------
@@ -551,6 +600,22 @@ page_link_btn
 action_btn
 ------------------------------------------ */
 
+.new_action_btn{
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  background-color: #78c1c4;
+  font-weight: bold;
+  color: #f7f7f7;
+  transition: 0.15s;
+}
+
+.new_action_btn:hover{
+  transform: scale(1.1);
+  background-color: #55B1B5;
+}
+
 .action_btn_area{
 padding: 0 8px;
 }
@@ -598,5 +663,97 @@ heading
 ------------------------------------------ */
 
 .heading1{
-  margin: 16px 0;
+  margin: 16px auto;
+}
+
+/* ------------------------------------------
+_message
+------------------------------------------ */
+
+.speaker{
+  margin: 4px 16px;
+  color: #8C8C8C;
+}
+
+.message_chat_area{
+  display: flex;
+}
+
+.message_chat_form{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.message_chat{
+  display: inline-block;
+  max-width: 66%;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: #EBEBEB;
+}
+
+.message_chat_text_area_container{
+  width: 66%;
+  border-radius: 8px;
+  background-color: #EBEBEB;
+}
+
+.message_type_300{
+  box-shadow: 0 0 4px 2px #e9c1a5;
+}
+
+.message_type_400{
+  box-shadow: 0 0 4px 2px #F9B7AE;
+}
+
+.message_chat_label{
+  width: 100%;
+}
+
+.message_chat_text_area{
+  resize: none;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: #E3F2F3;
+  color: #404040;
+  box-shadow: 0 0 4px 2px #55B1B5;
+  transition: 0.3s;
+}
+
+.message_chat_text_area:hover{
+  background-color: #f7f7f7;
+  outline: none;
+}
+
+.message_chat_text_area:focus{
+  background-color: #f7f7f7;
+  box-shadow: 0 0 4px 4px #55B1B5;
+  outline: none;
+}
+
+.message_update_area{
+  margin-left: 16px;
+}
+
+.message_supplement{
+  margin: 8px 0;
+  font-size: 14px;
+  color:#8C8C8C;
+}
+
+.user{
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ------------------------------------------
+line
+------------------------------------------ */
+
+.underline{
+  margin-top: 8px;
+  border-bottom: 1px solid #8C8C8C;
 }

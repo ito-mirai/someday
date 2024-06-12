@@ -1,51 +1,45 @@
 <%= render partial: "shared/header" %>
 <main>
-  <h1>メッセージ</h1>
-  <h4>何か困っていることはありますか?</h4>
+  <div class="page_link_area">
+    <div class="page_link_btn_container">
+      <%= link_to "＜ タスク一覧", tasks_path, class:"page_link_btn" %>
+    </div>
+  </div>
+  <h1 class="heading1">―― チャット ――</h1>
+  <div class="message_area">
+    <div class="speaker">AIアシスタント</div>
+    <div class="message_chat_area">
+      <div class="message_chat">「困っていること」や「そのうちやろう」と思っていることはありませんか？</div>
+    </div>
+  </div>
   <% @messages.each do |message| %>
     <% unless message.message_type == 100 %>
-      <div class="message">
-        <div>
-          <%= message.speaker %>
-        </div>
-
-        <% if message.message_type == 1 || message.message_type == 3 %>
-
-          <%= form_with model:message, url:message_path(message.id), local: true do |f| %>
-              <div>
-                <%= f.text_area :message %>
-              </div>
-              <%= f.submit "提案を修正" %>
-          <% end %>
-
-        <% else %>
-          <div>
-            <%= message.message %>
-          </div>
-        <% end %>
-
-        <div>
-          <%= "type:#{message.message_type}" %>
-          <% if message.message_type == 1 %>
-            <div>グループの提案</div>
-          <% elsif message.message_type == 3 %>
-            <div>タスクの提案</div>
-          <% end %>
-        </div>
-
-      </div>
-      <% if message.message_type == 3 %>
-        <div><%= button_to "グループとタスクを登録する", action: "create", controller: "tasks" %></div>
-      <% end %>
+      <%= render partial: "message", locals: { message: message, username: current_user.username } %>
     <% end %>
   <% end %>
-  <% unless @messages == [] %>
-    <div><%= button_to "メッセージをリセット", message_path(@messages[0][:id]), method: :delete %></div>
-  <% end %>
-
-  <%= form_with model:@message, url:messages_path, local: true do |f| %>
-    <%= f.text_area :message %>
-    <%= f.submit %>
-  <% end %>
+  <div class="chat_action_container">
+    <% unless @messages == [] %>
+      <div class="chat_action_btn_area">
+        <%= button_to "会話をリセット", message_path(@messages[0][:id]), method: :delete, class:"delete_action_btn" %>
+      </div>
+    <% end %>
+    <% if check_for_message_existence(@messages, 3) %>
+      <div class="chat_action_btn_area">
+        <%= button_to "タスクを登録する", tasks_path, class:"new_action_btn" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="underline"></div>
+  <div class="message__new_form_area">
+    <%= form_with model:@message, url:messages_path, local: true, class:"message__new_message_form" do |f| %>
+      <div class="message__new_message_form_text_area_area">
+        <%= f.text_area :message, placeholder:"メッセージを入力" ,class:"message__new_message_form_text_area" %>
+      </div>
+      <div class="message__new_message_form_submit_area">
+        <%= f.submit "送信",class:"new_action_btn"%>
+      </div>
+    <% end %>
+  </div>
 </main>
 <%= render partial: "shared/footer" %>
+
