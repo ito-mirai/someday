@@ -42,9 +42,9 @@
     <% elsif message.message_type == 3 %>
       <div class="message_supplement">AIからあなたへタスクが提案されました！</div>
     <% elsif message.message_type == 300 %>
-      <div class="message_supplement">※タスクを登録するにはもっと情報が必要です。</div>
+      <%# <div class="message_supplement">※タスクを登録するにはもっと情報が必要です。</div> %>
     <% elsif message.message_type == 400 %>
-      <div class="message_supplement">※AIはあなたの返信を正しく理解出来ませんでした。</div>
+      <div class="message_supplement">※タスクを考えるには、もっと具体的な情報が必要です。</div>
     <% end %>
   </div>
 <% end %>
