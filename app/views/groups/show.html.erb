@@ -23,11 +23,11 @@
         <div class="action_btn_area">
           <%= f.submit "更新する", class:"update_action_btn" %>
         </div>
+    <% end %>
         <div class="action_btn_area">
-          <%= button_to "削除する", group_path, method: :delete, class:"delete_action_btn" %>
+          <%= button_to "削除する", group_path(@group.id), method: :delete, class:"delete_action_btn" %>
         </div>
       </div>
-    <% end %>
   </div>
   <h1 class="heading1">―― グループのタスク ――</h1>
   <% @group.tasks.each do |task| %>

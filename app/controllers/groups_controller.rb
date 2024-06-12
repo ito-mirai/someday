@@ -6,12 +6,11 @@ class GroupsController < ApplicationController
   # 特定のgroupをparamsのidから取得
   before_action :find_group, except: :index
 
+  # 編集権の制限
+  before_action :only_current_user, only: :show
+
   def index
     @groups = Group.where(user_id: current_user.id)
-  end
-
-  def new
-    @group = Group.new
   end
 
   def create
@@ -28,7 +27,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to root_path
+      redirect_to groups_path
     else
       render :show, status: :unprocessable_entity
     end
@@ -36,7 +35,7 @@ class GroupsController < ApplicationController
 
   def destroy
     @group.destroy
-    redirect_to root_path
+    redirect_to groups_path
   end
 
   private
@@ -47,6 +46,12 @@ class GroupsController < ApplicationController
 
   def group_params
     params.require(:group).permit(:group_name, :group_memo).merge(user_id: current_user.id)
+  end
+
+  def only_current_user
+    unless current_user.id == @group.user.id
+      redirect_to groups_path
+    end
   end
 
 end

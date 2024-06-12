@@ -37,11 +37,11 @@
         <div class="action_btn_area">
           <%= f.submit "更新する", class:"update_action_btn" %>
         </div>
+    <% end %>
         <div class="action_btn_area">
-          <%= button_to "削除する", task_path, method: :delete, class:"delete_action_btn" %>
+          <%= button_to "削除する", task_path(@task.id), method: :delete, class:"delete_action_btn" %>
         </div>
       </div>
-    <% end %>
   </div>
 </main>
 <%= render partial: "shared/footer" %>
