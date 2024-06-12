@@ -22,7 +22,7 @@ header{
   /* position: fixed;
   top: 0px;
   z-index: 10; */
-  height: 64px;
+  height: 72px;
   width: 100%;
   background-color: #78c1c4;
   color: #f7f7f7;
@@ -42,7 +42,7 @@ main {
 footer{
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   position: fixed;
   bottom: 0px;
   z-index: 10;
@@ -84,62 +84,94 @@ h4{
 header
 ------------------------------------------ */
 
-.header__box{
-  width: calc(100% * (3 / 1));
-  margin: auto 16px;
-}
-
-.header__username{
+.header__link_area{
   display: flex;
-  justify-content: flex-start;
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
 }
 
-.header__title{
+.header__link_box{
+  margin: 0 16px;
   display: flex;
-  justify-content: center;
-  font-size: 40px;
+  align-items: center;
+  width: 50%;
 }
 
-.header__control{
+.header__title_link{
+  border-radius: 16px;
+  padding: 0 8px;
+  color: #f7f7f7;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.header__title_link:hover{
+  background-color: #9CD1D4;
+}
+
+.header__user_control_link_box{
   display: flex;
   justify-content: flex-end;
+  font-size: 14px;
 }
 
-.header__control_link_box{
-  margin-left: 8px;
+.current_user{
+  margin: 4px 0;
 }
 
-.header__control_link{
-  color: white;
+.header__user_control_link{
+  width: 80px;
+  margin: 4px 0;
+  border-radius: 4px;
+  padding: 0 4px;
+  background-color: #f7f7f7;
+  color: #8C8C8C;
+  text-align: center;
   text-decoration: none;
+  transition: 0.3s;
+}
+
+.header__user_control_link:hover{
+  background-color: #EBEBEB;
+}
+
+.left_shift{
+  justify-content: flex-end;
 }
 
 /* ------------------------------------------
 footer
 ------------------------------------------ */
 
-.footer__create_link_box{
+.footer__link_area{
+  max-width: 1024px;
+  width: 100%;
+}
+
+.footer__link_box{
   display: flex;
   justify-content: center;
-  width: calc(100% * (4 / 1));
+  width: 25%;
   margin: 0 auto;
 }
 
-.footer__create_link{
-  margin: 0 8px;
-  border: solid #FFFFFF;
-  border-radius: 8px;
-  padding: 4px;
-  color: white;
+.footer__link_btn{
+  width: 100%;
+  border-radius: 16px;
+  padding: 8px 0;
+  background-color: #f7f7f7;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #F1952D;
   text-decoration: none;
+  transition: 0.3s;
 }
 
-.group{
-  background-color: lightsteelblue;
-}
-
-.task{
-  background-color: lightcyan;
+.footer__link_btn:hover{
+  background-color: #EBEBEB;
+  transform: scale(1.05);
 }
 
 /* ------------------------------------------
@@ -163,6 +195,7 @@ shared/_group
   display: flex;
   justify-content: center;
   width: 56px;
+  color: #F1952D;
 }
 
 .shared__group_memo_area{
@@ -691,6 +724,7 @@ _message
   border-radius: 8px;
   padding: 8px;
   background-color: #EBEBEB;
+  white-space:pre-line;
 }
 
 .message_chat_text_area_container{
