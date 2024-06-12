@@ -1,5 +1,4 @@
 class GroupsController < ApplicationController
-
   # ログインしていないとき、ログインページへ遷移する
   before_action :authenticate_user!
 
@@ -49,9 +48,8 @@ class GroupsController < ApplicationController
   end
 
   def only_current_user
-    unless current_user.id == @group.user.id
-      redirect_to groups_path
-    end
-  end
+    return if current_user.id == @group.user.id
 
+    redirect_to groups_path
+  end
 end

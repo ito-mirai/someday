@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-
   # ログインしていないとき、ログインページへ遷移する
   before_action :authenticate_user!
 
@@ -48,9 +47,9 @@ class TasksController < ApplicationController
   end
 
   def only_current_user
-    unless @user == @task.user_id
-      redirect_to root_path
-    end
+    return if @user == @task.user_id
+
+    redirect_to root_path
   end
 
   def task_find
@@ -60,5 +59,4 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:group_id, :content, :memo, :type_id).merge(user_id: @user)
   end
-
 end

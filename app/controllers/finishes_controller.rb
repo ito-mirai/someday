@@ -22,5 +22,4 @@ class FinishesController < ApplicationController
   def finish_params
     params.require(:finish).permit(:task_id)
   end
-
 end
