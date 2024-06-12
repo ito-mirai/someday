@@ -36,7 +36,7 @@ main {
   max-width: 1024px; /* PCでも一定の大きさを保つ */
   margin: 0 auto;
   padding: 0 0 64px 0;
-  min-height: 100vh;
+  min-height: calc(100vh - 72px);
 }
 
 footer{
@@ -172,6 +172,101 @@ footer
 .footer__link_btn:hover{
   background-color: #EBEBEB;
   transform: scale(1.05);
+}
+
+/* ------------------------------------------
+devise
+------------------------------------------ */
+
+.user_form_area{
+  display: flex;
+  justify-content: center;
+}
+
+.user_form_container{
+  max-width: 50%;
+  width: 100%;
+}
+
+.user_form{
+  width: 100%;
+}
+
+.user_form_field{
+  width: 100%;
+  margin: 16px 0;
+}
+
+.user_form_text_field{
+  height: 35px;
+  width: 100%;
+  margin-top: 4px;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: #EBEBEB;
+  color: #404040;
+  outline: none;
+  transition: 0.15s;
+}
+
+.user_form_text_field:focus{
+  box-shadow: 0 0 4px 2px #F7C58C;
+}
+
+.user_form_remember_field{
+  display: flex;
+  justify-content: center;
+}
+
+.action_btn_area{
+  display: flex;
+  justify-content: center;
+  margin: 8px 0;
+}
+
+.devise_all_link_area{
+  margin: 32px 8px;
+}
+
+.devise_link_area{
+  margin: 8px 0;
+}
+
+.devise_link_btn{
+  width: 80px;
+  border-radius: 4px;
+  padding: 0 8px;
+  background-color: #B8BECC;
+  color: #f7f7f7;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.devise_link_btn:hover{
+  background-color: #7D88A1;
+}
+
+.devise_link_to{
+  width: 80px;
+  border-radius: 4px;
+  color: #8C8C8C;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.devise_link_to{
+  width: 80px;
+  border-radius: 4px;
+  color: #8C8C8C;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.form_supplement{
+  font-size: small;
+  color: #8C8C8C;
 }
 
 /* ------------------------------------------

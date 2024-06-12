@@ -1,7 +1,9 @@
 <footer>
   <div class="footer__link_area">
     <div class="footer__link_box">
-      <%= link_to "タスクを考えて！", new_message_path, class: "footer__link_btn" %>
+      <% if user_signed_in? %>
+        <%= link_to "タスクを考えて！", new_message_path, class: "footer__link_btn" %>
+      <% end %>
     </div>
   </div>
 </footer>
