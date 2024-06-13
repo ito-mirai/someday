@@ -16,7 +16,7 @@ class MessagesController < ApplicationController
       user_message = Message.new(message_create_params)
       user_message.save!
 
-      # ChatGptServiceサービスでの処理
+      # ChatGptServiceでの処理
       user_message = message_create_params[:message]
       gpt = ChatGptService.new
       pronpts = gpt.chinese_room(@messages, user_message)
