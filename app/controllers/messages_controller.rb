@@ -1,5 +1,4 @@
 class MessagesController < ApplicationController
-
   # ログインしていないとき、ログインページへ遷移する
   before_action :authenticate_user!
 
@@ -13,19 +12,19 @@ class MessagesController < ApplicationController
   def create
     # ユーザーとAIの双方のメッセージが正常に保存された時のみ完了する
     ActiveRecord::Base.transaction do
-
       # ユーザーのメッセージを保存
       user_message = Message.new(message_create_params)
       user_message.save!
 
-      # ChatGptServiceサービスでの処理
+      # ChatGptServiceでの処理
       user_message = message_create_params[:message]
       gpt = ChatGptService.new
       pronpts = gpt.chinese_room(@messages, user_message)
 
       # AIのメッセージを保存
       pronpts.each do |pronpt|
-        gpt_message = Message.new(message: pronpt[:message], speaker: 1, message_type: pronpt[:message_type], user_id: current_user.id)
+        gpt_message = Message.new(message: pronpt[:message], speaker: 1, message_type: pronpt[:message_type],
+                                  user_id: current_user.id)
         gpt_message.save!
       end
     end
@@ -60,5 +59,4 @@ class MessagesController < ApplicationController
   def message_update_params
     params.require(:message).permit(:message, :speaker, :message_type).merge(user_id: current_user.id)
   end
-
 end
