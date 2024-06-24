@@ -1,4 +1,4 @@
-class Prioritiy < ApplicationRecord
+class Priority < ApplicationRecord
 
   belongs_to :task
 

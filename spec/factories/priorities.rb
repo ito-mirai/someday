@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :prioritiy do
+  factory :priority do
     
   end
 end
