@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_04_060724) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_24_085430) do
   create_table "finishes", charset: "utf8", force: :cascade do |t|
     t.bigint "task_id", null: false
     t.datetime "created_at", null: false
@@ -35,6 +35,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_04_060724) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "priorities", charset: "utf8", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "weight", null: false
+    t.bigint "task_id", null: false
+    t.bigint "finish_id", null: false
+    t.index ["finish_id"], name: "index_priorities_on_finish_id"
+    t.index ["task_id"], name: "index_priorities_on_task_id"
   end
 
   create_table "tasks", charset: "utf8", force: :cascade do |t|
@@ -65,6 +75,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_04_060724) do
   add_foreign_key "finishes", "tasks"
   add_foreign_key "groups", "users"
   add_foreign_key "messages", "users"
+  add_foreign_key "priorities", "finishes"
+  add_foreign_key "priorities", "tasks"
   add_foreign_key "tasks", "groups"
   add_foreign_key "tasks", "users"
 end
