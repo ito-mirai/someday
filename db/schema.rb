@@ -42,8 +42,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_24_085430) do
     t.datetime "updated_at", null: false
     t.integer "weight", null: false
     t.bigint "task_id", null: false
-    t.bigint "finish_id", null: false
-    t.index ["finish_id"], name: "index_priorities_on_finish_id"
     t.index ["task_id"], name: "index_priorities_on_task_id"
   end
 
@@ -75,7 +73,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_24_085430) do
   add_foreign_key "finishes", "tasks"
   add_foreign_key "groups", "users"
   add_foreign_key "messages", "users"
-  add_foreign_key "priorities", "finishes"
   add_foreign_key "priorities", "tasks"
   add_foreign_key "tasks", "groups"
   add_foreign_key "tasks", "users"
