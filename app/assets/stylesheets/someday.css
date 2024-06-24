@@ -347,6 +347,7 @@ shared/_task
 .shared__task_priority_area{
   width: 80px;
   text-align: center;
+  color: #f4ad5d;
 }
 
 .shared__task_checkbox_label_container{
