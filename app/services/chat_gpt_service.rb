@@ -37,6 +37,23 @@ class ChatGptService
     gpt_4o_check(@prompt)
   end
 
+  def task_priority_check_preparation(tasks, priority_base)
+    # タスクを分析して優先度を判定するプロンプトの準備
+    @content = "あなたはユーザーのタスクの優先度を判定するためのシステムです。\nこれから１つまたは複数のタスクを一覧として提示するので、その後に改めて提示されるタスクの優先度を、一覧として提示された中で相対的にどれくらいの優先度があるのか回答してください。\nこのとき回答する優先度は、#{priority_base}を基準値として、相対的に妥当な数値を0から100のあいだで割り当ててください。\n\n回答する際は数字だけ答えてください。\n例：50"
+    # 同時にタスク属性の判定も行うので、プロンプトは@promptとは別の変数に代入
+    @priority_prompt = [{ role: 'system', content: @content }]
+
+    # タスクの一覧を提示
+    @priority_prompt << { role: 'system', content: tasks }
+  end
+
+  def task_priority_check(content)
+    # 用意したタスク優先度分析用プロンプトに判定するタスクを追加
+    @priority_prompt << { role: 'user', content: content }
+    # 分析を実行（gpt_4oを使用）
+    gpt_4o_check(@priority_prompt)
+  end
+
   #-------------------------------------------------------------
   private
 
