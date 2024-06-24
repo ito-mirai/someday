@@ -26,6 +26,17 @@ class ChatGptService
     gpt_4o_check(@prompt)
   end
 
+  def group_priority_check(group)
+    # グループを分析して優先度を判定するプロンプトの適用
+    @content = "あなたはユーザーのタスクの優先度を判定するためのシステムです。\nユーザーの回答に対して、あなたは緊急度と重要度の観点から適切な優先度を答えてください。\n優先度は以下の４つの選択肢から選択しなくてはいけません。\n\n1. 緊急度が高く、重要度も高い\n2. 緊急度は低いが、重要度は高い\n3. 緊急度が高いが、重要度は低い\n4. 緊急度が低く、重要度も低い\n\n回答する際は数字だけ答えてください。\n例：1"
+    @prompt = [{ role: 'system', content: @content }]
+
+    # グループを提示
+    @prompt << { role: 'user', content: group }
+    # 分析を実行（gpt_4oを使用）
+    gpt_4o_check(@prompt)
+  end
+
   #-------------------------------------------------------------
   private
 
