@@ -8,6 +8,12 @@
   <h1 class="heading1">―― タスクのグループ ――</h1>
   <%= render partial: "shared/group", locals: { group: @task.group } %>
   <h1 class="heading1">―― タスクの編集 ――</h1>
+  <div class="task__show_priority_area">
+    <div class="task__show_priority_container">
+      <h1 class="task__show_priority"><%= @task.priority.weight %></h1>
+    </div>
+    <div class="task_show_priority_text">タスクの優先度は自動で設定されます</div>
+  </div>
   <div class="tasks__show_form_area">
     <%= form_with model: @task, url:task_path, local: true, class:"tasks__show_form" do |f| %>
       <div class="tasks__show_label_area">

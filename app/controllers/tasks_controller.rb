@@ -12,13 +12,14 @@ class TasksController < ApplicationController
   before_action :only_current_user, only: :show
 
   def index
-    @tasks = Task.where(user_id: @user)
+    @tasks = Task.order("created_at DESC").where(user_id: @user)
   end
 
   def create
     @messages = Message.where(user_id: @user)
 
-    TaskDecomposerService.decomposer(@messages, @user)
+    todo = TodoRegistrationService.new(@messages, @user)
+    todo.registration
     Message.where(user_id: @user).destroy_all
 
     redirect_to root_path

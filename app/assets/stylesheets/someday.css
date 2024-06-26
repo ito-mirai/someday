@@ -316,7 +316,7 @@ shared/_task
 }
 
 .shared__task_group_area{
-  padding: 0 80px;
+  padding: 0 160px;
 }
 
 .shared__task_group_container{
@@ -344,6 +344,12 @@ shared/_task
   justify-content: space-between;
 }
 
+.shared__task_priority_area{
+  width: 80px;
+  text-align: center;
+  color: #f4ad5d;
+}
+
 .shared__task_checkbox_label_container{
   width: 100%;
 }
@@ -351,7 +357,7 @@ shared/_task
 .shared__task_detail_area{
   display: flex;
   align-items: center;
-  padding: 0 80px;
+  padding: 0 160px;
 }
 
 .shared__task_type{
@@ -439,6 +445,23 @@ groups/show
 /* ------------------------------------------
 tasks/show
 ------------------------------------------ */
+
+.task__show_priority_area{
+  display: flex;
+  align-items: center;
+}
+
+.task__show_priority_container{
+  width: 82px;
+  text-align: center;
+  color: #f4ad5d;
+}
+
+.task_show_priority_text{
+  padding: 0 8px;
+  font-size: small;
+  color: #8C8C8C;
+}
 
 .tasks__show_form_area{
   margin-bottom: 16px;
