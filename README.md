@@ -7,6 +7,7 @@
 掃除や洗濯、買い物、申請、手続きなど「いつかやろう」「そのうちやろう」と思っていたことを、そのうちやるための対話型リマインダーアプリ
 ### 特徴
 - AIを用いたタスクの作成と分析
+- タスクの内容に応じた優先度の自動判定
 - LINEを使ったAIとのチャット機能と通知（実装予定）
 
 # URL
@@ -54,10 +55,11 @@ AIの返信に対しては具体的なメッセージを送信するようにし
 ## その他の機能
 - タスクの削除
 - チャットで提案されたタスクを登録前に修正
+- タスク優先度判定機能  
 
 # 今後の実装予定
-- タスク優先度判定機能  
 - LINEでのリマインド通知機能
+- 通知に対する反応に基づいた優先度の変動
 - LINEを使用したチャット機能
 
 # DB設計（実装予定も含む）
@@ -105,7 +107,6 @@ belongs_to :user
 | --- | --- | --- | --- |
 | task | references | null: false, foreign_key: true | tasksテーブルの外部キー |
 
-has_one :priority  
 belongs_to :task
 
 ### prioritiesテーブル（Priorityモデル）
@@ -114,10 +115,8 @@ belongs_to :task
 | --- | --- | --- | --- |
 | weight | integer | null: false | 重み付け |
 | task | references | null: false, foreign_key: true | tasksテーブルの外部キー |
-| finish | references | null: false, foreign_key: true | finishesテーブルの外部キー |
 
 belongs_to :task  
-belongs_to :finish
 
 ### messagesテーブル（Messageモデル）
 
