@@ -12,7 +12,7 @@ class TasksController < ApplicationController
   before_action :only_current_user, only: :show
 
   def index
-    @tasks = Task.where(user_id: @user)
+    @tasks = Task.order("created_at DESC").where(user_id: @user)
   end
 
   def create
